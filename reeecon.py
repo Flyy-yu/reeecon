@@ -1,5 +1,5 @@
 import pathlib
-from module.subdomain import *
+from .module.subdomain import *
 from datetime import date
 
 today = date.today().strftime("%b-%d-%Y")
@@ -7,10 +7,14 @@ today = date.today().strftime("%b-%d-%Y")
 if __name__ == '__main__':
     target = 'certik'
 
-    out_dir = '~/recon_result/{}/{}/'.format(today, target)
+    # TODO better path
+    out_dir = '/root/recon_result/{}/{}/'.format(today, target)
 
-    pathlib.Path(out_dir + 'subdomain').mkdir(parents=True, exist_ok=True)
+    print("subdomain recon:")
+    subdomain_path = out_dir + 'subdomain/'
+    pathlib.Path(subdomain_path).mkdir(parents=True, exist_ok=True)
 
-    use_amass('certik.org', out_dir)
+    use_amass('certik.org', subdomain_path)
+    use_subfinder('certik.org', subdomain_path)
 
-    use_subfinder('certik.org', out_dir)
+    run_tool('cat {} | --sort --unique > ../subdomain.txt'.format(subdomain_path))
