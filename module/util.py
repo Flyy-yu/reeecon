@@ -2,7 +2,6 @@
 
 import subprocess
 
-
 def run_tool(args):
     args_arr = args.split(' ')
     res = subprocess.run(args_arr)
@@ -10,3 +9,4 @@ def run_tool(args):
         return True
     else:
         return False
+
