@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import json
 import pathlib
 from module.subdomain import *
@@ -12,7 +13,11 @@ with open('config.json') as json_data_file:
 today = date.today().strftime("%b-%d-%Y")
 
 if __name__ == '__main__':
-    target = 'certik'
+
+    try:
+        target = sys.argv[1]
+    except IndexError:
+        exit('Usage: python3 reeecon.py $target(domain)')
 
     # TODO better path
     out_dir = '/root/recon_result/{}/{}/'.format(target, today)
@@ -20,7 +25,12 @@ if __name__ == '__main__':
     # subdomain recon with amass and subfinder
     print("****subdomain recon****")
     subdomain_path = out_dir + 'subdomain/'
-    pathlib.Path(subdomain_path).mkdir(parents=True)
+
+    try:
+        pathlib.Path(subdomain_path).mkdir(parents=True)
+    except FileExistsError:
+        print("directory already exists")
+        pass
 
     use_amass('certik.org', subdomain_path)
     use_subfinder('certik.org', subdomain_path)
@@ -36,9 +46,16 @@ if __name__ == '__main__':
 
     directory_path = out_dir + 'directory/'
 
+    try:
+        pathlib.Path(directory_path).mkdir(parents=True)
+    except FileExistsError:
+        print('directory already exists')
+        pass
+
     with open('{}responsive.txt'.format(out_dir), 'r') as f:
-        line = f.readline()
+        line = f.readline().replace('\n', '')
         while line:
+            use_dirsearch_short_url(line, config['small.txt'], directory_path)
             use_gobuster(line, config['small.txt'], directory_path)
             line = f.readline()
-        
+
