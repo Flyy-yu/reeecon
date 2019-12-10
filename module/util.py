@@ -4,6 +4,7 @@ import subprocess
 
 
 def run_tool(args):
+    #TODO disable Stdout?
     args_arr = args.split(' ')
     res = subprocess.run(args_arr)
     if res.returncode == 0:
