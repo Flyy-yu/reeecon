@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import json
 import pathlib
@@ -59,3 +58,4 @@ if __name__ == '__main__':
             use_gobuster(line, config['small.txt'], directory_path)
             line = f.readline()
 
+    convert_to_html(out_dir)

@@ -18,3 +18,13 @@ def get_directory_filename(url):
     else:
         filename = url.replace('http://', '') + '_http'
     return filename
+
+
+def convert_to_html(path):
+    with open(path + 'responsive.txt', 'r') as f:
+        with open(path + 'responsive.html', 'w') as fw:
+            line = f.readline().replace('\n', '')
+            while line:
+                html_line = '<a href="{}">{}</a><br>'.format(line, line)
+                fw.writelines(html_line)
+                line = f.readline().replace('\n', '')
