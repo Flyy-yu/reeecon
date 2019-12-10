@@ -52,10 +52,10 @@ if __name__ == '__main__':
         pass
 
     with open('{}responsive.txt'.format(out_dir), 'r') as f:
-        line = f.readline().replace('\n', '')
+        line = f.readline().replace('\n', '').replace('\r', '')
         while line:
             use_dirsearch_short_url(line, config['small.txt'], directory_path)
             use_gobuster(line, config['small.txt'], directory_path)
-            line = f.readline()
+            line = f.readline().replace('\n', '').replace('\r', '')
 
     convert_to_html(out_dir)
