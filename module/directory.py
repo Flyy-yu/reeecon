@@ -23,6 +23,6 @@ def use_dirsearch_short_url(url, wordlist, out_dir):
 def use_gobuster(url, wordlist, out_dir):
     filename = get_directory_filename(url) + '_gobuster.txt'
     out_dir = out_dir + filename
-    run_tool('gobuster dir -u {} -w {} -o {} -t 20'
+    run_tool('gobuster dir -u {} -w {} -o {} -t 20 --wildcard'
              .format(url, wordlist, out_dir))
     return
