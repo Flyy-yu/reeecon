@@ -806,7 +806,6 @@ t_vulnerable = {}
 t_multiproc = {
     'n_current': 0,
     'n_total': n_totest,
-    'd_output': d_output,
     'f_output': f_output,
     '_verbose': _verbose,
 }

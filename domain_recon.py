@@ -40,7 +40,7 @@ if __name__ == '__main__':
         pass
 
     smuggling_path = out_dir + "smuggling.txt"
-    os.system('python3 module/Smuggling_download.py -u {}subdomain.txt -of {}'.format(out_dir, smuggling_path))
+    os.system('python3 module/Smuggling_download.py -u {}responsive.txt -of {}'.format(out_dir, smuggling_path))
 
     convert_to_html(out_dir)
     # directory brute force with gobuster
