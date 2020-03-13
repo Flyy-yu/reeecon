@@ -39,6 +39,9 @@ if __name__ == '__main__':
         print("directory already exists")
         pass
 
+    smuggling_path = out_dir + "smuggling.txt"
+    os.system('python3 module/Smuggling_download.py -u {}subdomain.txt -of {}'.format(out_dir, smuggling_path))
+
     convert_to_html(out_dir)
     # directory brute force with gobuster
     print("****directory brute force****")
