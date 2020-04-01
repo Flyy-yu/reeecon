@@ -30,7 +30,8 @@ if __name__ == '__main__':
         pathlib.Path(subdomain_path).mkdir(parents=True)
         use_amass(target, subdomain_path)
         use_subfinder(target, subdomain_path)
-
+        use_sublist3r(target, subdomain_path)
+        
         os.system('cat {}* | sort --unique > {}subdomain.txt'.format(subdomain_path,
                                                                      out_dir))
 
@@ -63,5 +64,5 @@ if __name__ == '__main__':
         line = f.readline().replace('\n', '').replace('\r', '')
         while line:
             use_dirsearch_short_url(line, config['top1000'], directory_path)
-            use_gobuster(line, config['top1000'], directory_path)
+            #use_gobuster(line, config['top1000'], directory_path)
             line = f.readline().replace('\n', '').replace('\r', '')
