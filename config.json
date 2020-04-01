@@ -1,6 +1,6 @@
 {
-  "top1000": "/root/wordlist/RobotsDisallowed/top1000.txt",
+  "top1000": "/root/wordlist/top1000.txt",
   "top10000": "/root/wordlist/RobotsDisallowed/top10000.txt",
   "small.txt": "/root/wordlist/dirb/small.txt",
-  "big.txt": "/root/wordlist/dirb/big.txt"
+  "big.txt": "/root/wordlist/dirb/big.txt",
 }

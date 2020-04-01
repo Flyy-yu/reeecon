@@ -4,6 +4,7 @@ import json
 import pathlib
 from module.subdomain import *
 from module.directory import *
+from module.subdomain_takeover import *
 from datetime import date
 
 with open('config.json') as json_data_file:
@@ -38,6 +39,10 @@ if __name__ == '__main__':
     except FileExistsError:
         print("directory already exists")
         pass
+
+    # Check for sub-domain takeover
+    print("Checking for potential subdomain takeover, this will take a while")
+    subdomain_takeover(out_dir, target)
 
     smuggling_path = out_dir + "smuggling.txt"
     os.system('python3 module/Smuggling_download.py -u {}responsive.txt -of {}'.format(out_dir, smuggling_path))
