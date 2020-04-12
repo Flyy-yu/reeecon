@@ -28,10 +28,10 @@ def subdomain_takeover(out_dir, target):
             text_file.write("%s\n" % item)
 
     os.system(
-        'cat {} | ~/tools/massdns/bin/massdns -r ~/tools/massdns/lists/resolvers.txt -t A -q -o S -w {}domaintemp.txt'.format(
+        'cat {} | /root/tools/massdns/bin/massdns -r /root/tools/massdns/lists/resolvers.txt -t A -q -o S -w {}domaintemp.txt'.format(
             out_dir + 'subdomain.txt', out_dir))
     os.system(
-        '~/tools/massdns/scripts/subbrute.py {} {} | ~/tools/massdns/bin/massdns -r ~/tools/massdns/lists/resolvers.txt -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
+        '/root/tools/massdns/scripts/subbrute.py {} {} | /root/tools/massdns/bin/massdns -r /root/tools/massdns/lists/resolvers.txt -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
             massdnsWordlist, target, out_dir))
     test_subdomain = {}
     with open(out_dir + "domaintemp.txt", "r") as text_file:
@@ -48,5 +48,4 @@ def subdomain_takeover(out_dir, target):
             if "NXDOMAIN" in output:
                 f.writelines(subdomain + '\n')
 
-
-#subdomain_takeover('/root/recon_result/marriott.com/Mar-15-2020/', 'marriott.com')
+# subdomain_takeover('/root/recon_result/marriott.com/Mar-15-2020/', 'marriott.com')

@@ -1,5 +1,3 @@
-import os
-import sys
 import json
 import pathlib
 from module.subdomain import *
@@ -41,13 +39,6 @@ if __name__ == '__main__':
         print("directory already exists")
         pass
 
-    # Check for sub-domain takeover
-    print("Checking for potential subdomain takeover, this will take a while")
-    subdomain_takeover(out_dir, target)
-
-    smuggling_path = out_dir + "smuggling.txt"
-    os.system('python3 module/Smuggling_download.py -u {}responsive.txt -of {}'.format(out_dir, smuggling_path))
-
     convert_to_html(out_dir)
     # directory brute force with gobuster
     print("****directory brute force****")
@@ -64,5 +55,13 @@ if __name__ == '__main__':
         line = f.readline().replace('\n', '').replace('\r', '')
         while line:
             use_dirsearch_short_url(line, config['top1000'], directory_path)
-            #use_gobuster(line, config['top1000'], directory_path)
+            use_gobuster(line, config['top1000'], directory_path)
             line = f.readline().replace('\n', '').replace('\r', '')
+
+    # Check for request smuggling
+    smuggling_path = out_dir + "smuggling.txt"
+    os.system('python3 module/Smuggling_download.py -u {}responsive.txt -of {}'.format(out_dir, smuggling_path))
+
+    # Check for sub-domain takeover
+    print("Checking for potential subdomain takeover, this will take a while")
+    subdomain_takeover(out_dir, target)
