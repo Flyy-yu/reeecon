@@ -20,6 +20,8 @@ if __name__ == '__main__':
     # TODO better path
     out_dir = '/root/recon_result/{}/{}/'.format(target, today)
 
+    os.system('rm -r {}'.format(out_dir))
+
     # subdomain recon with amass and subfinder
     print("****subdomain recon****")
     subdomain_path = out_dir + 'subdomain/'
@@ -29,9 +31,13 @@ if __name__ == '__main__':
         use_amass(target, subdomain_path)
         use_subfinder(target, subdomain_path)
         use_sublist3r(target, subdomain_path)
-        
+
         os.system('cat {}* | sort --unique > {}subdomain.txt'.format(subdomain_path,
                                                                      out_dir))
+
+        # Check for sub-domain takeover
+        print("Checking for potential subdomain takeover, this will take a while")
+        subdomain_takeover(out_dir, target)
 
         os.system('cat {}subdomain.txt | httprobe -c 50 -t 3000 > {}responsive.txt'
                   .format(out_dir, out_dir))
@@ -61,7 +67,3 @@ if __name__ == '__main__':
     # Check for request smuggling
     smuggling_path = out_dir + "smuggling.txt"
     os.system('python3 module/Smuggling_download.py -u {}responsive.txt -of {}'.format(out_dir, smuggling_path))
-
-    # Check for sub-domain takeover
-    print("Checking for potential subdomain takeover, this will take a while")
-    subdomain_takeover(out_dir, target)

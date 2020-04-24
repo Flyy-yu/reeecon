@@ -1,7 +1,14 @@
 # module for subdomain enumeration
 
+import urllib.request
+import urllib.parse
+import re
+import os
 from .util import *
+from datetime import date
 
+today = date.today().strftime("%b-%d-%Y")
+massdnsWordlist = "/root/wordlist/dns-Jhaddix.txt"
 
 def use_amass(domain, out_dir):
     run_tool('amass enum -d {} -o {}'.format(domain, out_dir + 'amass.txt'))
