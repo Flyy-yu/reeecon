@@ -19,7 +19,7 @@ def subdomain_takeover(out_dir, target):
             massdnsWordlist, target, out_dir))
     test_subdomain = {}
 
-    with open(out_dir + "domaintemp.txt", "r") as text_file, open(out_dir + 'subdomain.txt', 'w') as subdomain:
+    with open(out_dir + "domaintemp.txt", "r") as text_file, open(out_dir + 'subdomain.txt', 'a+') as subdomain:
         lines = text_file.readlines()
         for line in lines:
             record = line.split(' ')
