@@ -3,7 +3,9 @@ import pathlib
 from module.subdomain import *
 from module.directory import *
 from module.subdomain_takeover import *
+from module.screenshot import *
 from datetime import date
+import sys
 
 with open('config.json') as json_data_file:
     config = json.load(json_data_file)
@@ -42,10 +44,16 @@ if __name__ == '__main__':
         os.system('cat {}subdomain.txt | httprobe -c 50 -t 3000 > {}responsive.txt'
                   .format(out_dir, out_dir))
     except FileExistsError:
-        print("directory already exists")
+        print("Directory found")
         pass
 
     convert_to_html(out_dir)
+
+
+    # screenshot with AQUATONE
+    print("****Getting screenshot with AQUATONE, it take a while****")
+    use_aquatone(out_dir)
+
     # directory brute force with gobuster
     print("****directory brute force****")
 

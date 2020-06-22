@@ -1,9 +1,5 @@
 # module for subdomain enumeration
 
-import urllib.request
-import urllib.parse
-import re
-import os
 from .util import *
 from datetime import date
 

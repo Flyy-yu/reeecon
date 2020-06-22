@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-import sys
-import urllib.request
-import urllib.parse
-import re
+
 import os
 from datetime import date
 
