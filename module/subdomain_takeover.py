@@ -25,7 +25,7 @@ def subdomain_takeover(out_dir, target):
                 subdomain.writelines(record[0] + '\n')
 
     with open(out_dir + "subdomain_takeover.txt", "a") as f:
-        f.writelines('check the following domains for NS takeover:')
+        f.writelines('check the following domains for NS takeover:\n')
         for subdomain in test_subdomain.keys():
             output = os.popen("host {}".format(subdomain)).read()
             if "NXDOMAIN" in output:

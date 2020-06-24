@@ -38,7 +38,7 @@ if __name__ == '__main__':
                                                                      out_dir))
 
         # Check for sub-domain takeover
-        print("Checking for potential subdomain takeover, this will take a while")
+        print("****Checking for potential subdomain takeover, this will take a while****")
         subdomain_takeover(out_dir, target)
 
         os.system('cat {}subdomain.txt | httprobe -c 50 -t 3000 > {}responsive.txt'
@@ -48,7 +48,6 @@ if __name__ == '__main__':
         pass
 
     convert_to_html(out_dir)
-
 
     # screenshot with AQUATONE
     print("****Getting screenshot with AQUATONE, it take a while****")
