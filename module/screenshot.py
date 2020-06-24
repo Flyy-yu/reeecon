@@ -10,4 +10,4 @@ def use_aquatone(out_dir):
 
 
 if __name__ == '__main__':
-    use_aquatone('/root/recon_result/certik.io/Mar-13-2020/')
+    use_aquatone('~/recon_result/certik.io/Mar-13-2020/')

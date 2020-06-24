@@ -20,7 +20,7 @@ if __name__ == '__main__':
         exit('Usage: python3 domain_recon.py $target(domain)')
 
     # TODO better path
-    out_dir = '/root/recon_result/{}/{}/'.format(target, today)
+    out_dir = '~/recon_result/{}/{}/'.format(target, today)
 
     os.system('rm -r {}'.format(out_dir))
 
