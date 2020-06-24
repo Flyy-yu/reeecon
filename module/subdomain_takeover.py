@@ -2,18 +2,23 @@
 
 import os
 from datetime import date
+from .util import *
 
 today = date.today().strftime("%b-%d-%Y")
-massdnsWordlist = "~/wordlist/dns-Jhaddix.txt"
+
+massdnsWordlist = home + "/wordlist/dns-Jhaddix.txt"
+massdns_dir = home + "/tools/massdns/bin/massdns"
+resolvers_dir = home + "/tools/massdns/lists/resolvers.txt"
+subbrute_py_dir = home + "/tools/massdns/scripts/subbrute.py"
 
 
 def subdomain_takeover(out_dir, target):
     os.system(
-        'cat {} | ~/tools/massdns/bin/massdns -r ~/tools/massdns/lists/resolvers.txt -t A -q -o S -w {}domaintemp.txt'.format(
-            out_dir + 'subdomain.txt', out_dir))
+        'cat {} | {} -r {} -t A -q -o S -w {}domaintemp.txt'.format(out_dir + 'subdomain.txt', massdns_dir,
+                                                                    resolvers_dir, out_dir))
     os.system(
-        '~/tools/massdns/scripts/subbrute.py {} {} | ~/tools/massdns/bin/massdns -r ~/tools/massdns/lists/resolvers.txt -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
-            massdnsWordlist, target, out_dir))
+        subbrute_py_dir + massdnsWordlist + massdnsWordlist + ' | {} -r {} -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
+            massdns_dir, resolvers_dir, out_dir))
     test_subdomain = {}
 
     with open(out_dir + "domaintemp.txt", "r") as text_file, open(out_dir + 'subdomain.txt', 'a+') as subdomain:

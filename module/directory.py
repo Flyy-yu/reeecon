@@ -1,6 +1,6 @@
 from .util import *
 
-dirs_path = '~/dirsearch/dirsearch.py'
+dirs_path = home + '/dirsearch/dirsearch.py'
 f_ext = 'php,asp,aspx,jsp,html,zip'
 
 

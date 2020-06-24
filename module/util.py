@@ -1,7 +1,8 @@
 # All utility functions
 
 import subprocess
-
+from pathlib import Path
+home = str(Path.home())
 
 def run_tool(args):
     #TODO disable Stdout?

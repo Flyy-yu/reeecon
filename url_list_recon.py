@@ -19,7 +19,7 @@ if __name__ == '__main__':
         exit('Usage: python3 url_list_recon.py $target.txt')
 
     # TODO better path
-    out_dir = '~/recon_result/{}/{}/'.format(target, today)
+    out_dir = '{}/recon_result/{}/{}/'.format(home,target, today)
 
     run_tool('mkdir -p ' + out_dir)
     run_tool('cp {} {}'.format(target, out_dir + 'responsive.txt'))
