@@ -1,5 +1,5 @@
 {
-  "top1000": "~/wordlist/top1000.txt",
+  "top1000": "~/wordlist/RobotsDisallowed/top1000.txt",
   "top10000": "~/wordlist/RobotsDisallowed/top10000.txt",
   "small.txt": "~/wordlist/dirb/small.txt",
   "big.txt": "~/wordlist/dirb/big.txt"

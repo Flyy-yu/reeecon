@@ -17,8 +17,8 @@ def subdomain_takeover(out_dir, target):
         'cat {} | {} -r {} -t A -q -o S -w {}domaintemp.txt'.format(out_dir + 'subdomain.txt', massdns_dir,
                                                                     resolvers_dir, out_dir))
     os.system(
-        subbrute_py_dir + massdnsWordlist + massdnsWordlist + ' | {} -r {} -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
-            massdns_dir, resolvers_dir, out_dir))
+        '{} {} {} | {} -r {} -t A -q -o S | grep -v 142.54.173.92 >> {}domaintemp.txt'.format(
+            subbrute_py_dir, massdnsWordlist, target, massdns_dir, resolvers_dir, out_dir))
     test_subdomain = {}
 
     with open(out_dir + "domaintemp.txt", "r") as text_file, open(out_dir + 'subdomain.txt', 'a+') as subdomain:
