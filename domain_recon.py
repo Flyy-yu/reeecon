@@ -40,13 +40,16 @@ if __name__ == '__main__':
         # Check for sub-domain takeover
         print("****Checking for potential subdomain takeover, this will take a while****")
         subdomain_takeover(out_dir, target)
-
         os.system('cat {}subdomain.txt | httprobe -c 50 -t 3000 > {}responsive.txt'
                   .format(out_dir, out_dir))
     except FileExistsError:
         print("Directory found")
         pass
 
+    # Remove the ending "." in responsive.txt
+    remove_ending_dot(out_dir)
+
+    # convert responsive.txt to responsive.html
     convert_to_html(out_dir)
 
     # screenshot with AQUATONE

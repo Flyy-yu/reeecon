@@ -2,10 +2,12 @@
 
 import subprocess
 from pathlib import Path
+
 home = str(Path.home())
 
+
 def run_tool(args):
-    #TODO disable Stdout?
+    # TODO disable Stdout?
     args_arr = args.split(' ')
     res = subprocess.run(args_arr)
     if res.returncode == 0:
@@ -30,3 +32,14 @@ def convert_to_html(path):
                 html_line = '<a href="{}">{}</a><br>'.format(line, line)
                 fw.writelines(html_line)
                 line = f.readline().replace('\n', '')
+
+
+def remove_ending_dot(out_dir):
+    with open(out_dir + "responsive.txt", "r") as f:
+        lines = f.readlines()
+    url_set = set()
+    for line in lines:
+        url_set.add(line.replace('.\n', '\n'))
+    with open(out_dir + "responsive.txt", "w") as f:
+        for item in url_set:
+            f.write(item)
