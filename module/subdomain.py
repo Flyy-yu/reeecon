@@ -18,12 +18,11 @@ def use_subfinder(domain, out_dir):
 
 
 def use_sublist3r(domain, out_dir):
-    os.system(
+    run_tool(
         'python3 {}/tools/Sublist3r/sublist3r.py -d {} -t 10 -o {}'.format(home, domain, out_dir + 'sublist3r.txt'))
     pass
 
 
 def use_github_subdomains(domain, out_dir, token):
-    run_tool('python3 {}/tools/github-subdomains.py -t {} -d {} > {}'.format(home, token, domain,
-                                                                             out_dir + 'github_subdomains.txt'))
+    os.system('python3 {}/tools/github-subdomains.py -t {} -d {} > {}'.format(home, token, domain, out_dir + 'github_subdomains.txt'))
     pass
