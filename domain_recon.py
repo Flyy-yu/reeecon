@@ -1,11 +1,12 @@
+import sys
 import json
 import pathlib
+import argparse
 from module.subdomain import *
 from module.directory import *
 from module.subdomain_takeover import *
 from module.screenshot import *
 from datetime import date
-import sys
 
 with open('config.json') as json_data_file:
     config = json.load(json_data_file)
@@ -14,17 +15,19 @@ today = date.today().strftime("%b-%d-%Y")
 
 if __name__ == '__main__':
 
-    try:
-        target = sys.argv[1]
-    except IndexError:
-        exit('Usage: python3 domain_recon.py $target(domain)')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--token", help="Github auth token for github_subdomain.py")
+    parser.add_argument("-d", "--domain", help="The target domain", required=True)
+    parser.parse_args()
+    args = parser.parse_args()
+
+    target = args.domain
 
     # TODO better path
     out_dir = '{}/recon_result/{}/{}/'.format(home, target, today)
 
     os.system('rm -r {}'.format(out_dir))
 
-    # subdomain recon with amass and subfinder
     print("****subdomain recon****")
     subdomain_path = out_dir + 'subdomain/'
 
@@ -33,6 +36,9 @@ if __name__ == '__main__':
         use_amass(target, subdomain_path)
         use_subfinder(target, subdomain_path)
         use_sublist3r(target, subdomain_path)
+
+        if args.token:
+            use_github_subdomains(target, subdomain_path, args.token)
 
         os.system('cat {}* | sort --unique > {}subdomain.txt'.format(subdomain_path,
                                                                      out_dir))
