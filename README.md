@@ -1,5 +1,7 @@
 # reeecon
 
+Bug bounty domain recon.
+<br>
 Inspired by https://github.com/nahamsec/lazyrecon. Rewrite it in python. 
 
 # Install
